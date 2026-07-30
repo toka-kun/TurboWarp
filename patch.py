@@ -6,7 +6,7 @@ for path in glob.glob('scratch-gui/build/*.html'):
   print(f'Patching HTML {path}')
   with open(path, 'r') as f:
     contents = f.read()
-    contents = contents.replace('</head>', '<meta name="robots" content="noindex"></head>')
+    contents = contents.replace('</head>', '<meta name="robots" content="noindex"><script src="//accaii.com/turbowarp/script.js" async></script><noscript><img src="//accaii.com/turbowarp/script?guid=on"></noscript></head>')
     contents = contents.replace('<link rel="manifest" href="manifest.webmanifest">', '')
   with open(path, 'w') as f:
     f.write(contents)
