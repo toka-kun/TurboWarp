@@ -1,0 +1,15 @@
+name: Trigger Cloudflare Pages build
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '52 18 * * 2' # 毎週火曜 18:52 UTC
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Cloudflare deploy hook
+        env:
+          HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: curl -fsS -X POST "$HOOK"
